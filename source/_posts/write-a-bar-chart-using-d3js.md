@@ -2,6 +2,8 @@
 title: 一步一步用 D3js 写一个Bar Chart
 date: 2020-03-13 22:53:33
 tags:
+  - d3js
+  - 数据可视化
 ---
 
 ## 前言
@@ -9,7 +11,7 @@ tags:
 本文介绍如何使用 d3js 创建一个 bar chart 组件（参考下视频）, 下面操起来！
 
 {% raw %}
-<video src="/videos/barchart_demo.mov" autoplay>
+<video src="/videos/barchart_demo.mov" autoplay loop="loop">
 </video>
 {% endraw %}
 
