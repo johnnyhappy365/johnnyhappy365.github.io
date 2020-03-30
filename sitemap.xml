@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/30/hierarchy-visualization/</loc>
+    
+    <lastmod>2020-03-30T10:12:30.816Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/19/time-series-chart/</loc>
+    
+    <lastmod>2020-03-20T04:47:06.194Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/14/write-a-line-chart-using-d3/</loc>
+    
+    <lastmod>2020-03-19T13:21:02.919Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/03/14/amazing-life-note-1/</loc>
     
     <lastmod>2020-03-17T04:31:00.334Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://yoursite.com/2020/03/13/write-a-bar-chart-using-d3js/</loc>
     
     <lastmod>2020-03-14T13:50:57.200Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/14/write-a-line-chart-using-d3/</loc>
-    
-    <lastmod>2020-03-14T13:50:48.572Z</lastmod>
     
   </url>
   

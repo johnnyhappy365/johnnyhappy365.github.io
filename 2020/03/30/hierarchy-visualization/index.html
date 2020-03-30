@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 多层次结构的数据可视化 · Johnny Happy's Blog</title><meta name="description" content="多层次结构的数据可视化 - Johnny Happy"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Johnny Happy's Blog"><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Johnny Happy's Blog" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/johnnyhappy365" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">多层次结构的数据可视化</h1><div class="post-info">Mar 30, 2020</div><div class="post-content"><h2 id="多层级结构"><a href="#多层级结构" class="headerlink" title="多层级结构"></a>多层级结构</h2><p>将大于等于 2 个层结构的数据叫作多层级数据结构。将此类进行数据可视化的时候，我们需要同时考虑如何将这种层级结构和指标同时进行展示。既要让用户看明白它的层次结构同时也要让用户看明白指标间的“对比”。本文介绍几种常见的可视化方法，并在最后给出一些综合的  对比分析。</p>
+<h2 id="圆形方案"><a href="#圆形方案" class="headerlink" title="圆形方案"></a>圆形方案</h2><p><img src="/images/hierarchy_sunburst.png" alt="sunburst"></p>
+<p>sunburst 是一种外观呈现圆形的方案。在图中最内层的表示第一级，依次往外。通过面积表示指标。</p>
+<p>sunburst 与好像是多个 donut 图的组合，非常巧妙的把层级结构展现出来。但它也有自身的特点，圆形方案占用的留白特别多，造成宝贵的页面空间被浪费。如果是在 dashboard 这样原场景的话，可能会占用比较大的面积，从而影响不能承受其它图表的摆放。</p>
+<h2 id="矩形方案"><a href="#矩形方案" class="headerlink" title="矩形方案"></a>矩形方案</h2><p><img src="/images/hierarchy_treemap.png" alt="sunburst"></p>
+<p>treemap 与 sunburst 有点像的地方是也是使用面积来表示指标的大小。但它使用的布局算法类似使用了尝试优先的方式，将同一 parent 节点的叶子结点聚焦在一起展现。</p>
+<p>treemap 的问题是不能最直观的看出一个多层级结构的关系。这个问题有几个方案可以解决：</p>
+<ol>
+<li>使用 tooltip 进行展示。如果显示这种关系的需求不是最核心的展示需求的话，可以使用 tooltip 的方式进行展示。</li>
+<li><a href="https://observablehq.com/@d3/cascaded-treemap" target="_blank" rel="noopener">cascaded-treemap</a></li>
+</ol>
+<p><img src="/images/hierarchy_treemap2.png" alt="cascaded treemap"></p>
+<h4 id="sunburst-vs-treemap"><a href="#sunburst-vs-treemap" class="headerlink" title="sunburst vs treemap"></a>sunburst vs treemap</h4><p>在 dashboard 的项目中，如果是层级非常少，且每个层级的孩子结节不多的情况下，我会考虑使用 sunburst。如果是相反的情况，使用 treemap 的空间利用率会更高一些。</p>
+<h2 id="树形方案"><a href="#树形方案" class="headerlink" title="树形方案"></a>树形方案</h2><p><img src="/images/hierarchy_tree.png" alt="tree"></p>
+<p>树形方案最主要的功能是把层次结构展示出来，在图的本身不太能有效的把指标展示出来。一种方法是在结点的 title 上，除了显示结点名，也可以把结点需要展示的指标显示出来。比如：小张（20 岁)。这里小张是结点名，20 岁是指标代表他的年龄。</p>
+<p>另一种方法是配合其它的控件使用。tree 只做层级结构的展示，通过是用来做导航，然后在右侧或其它位置提供一个结节详细信息的展示和操作面板。此方案更适用于有明确的导航需求的场景，用户知道想要找的结点，然后找到并进行操作。并不适合数据探索的场景。</p>
+<h2 id="网络形方案"><a href="#网络形方案" class="headerlink" title="网络形方案"></a>网络形方案</h2><p><img src="/images/hierarchy_network.png" alt="network graph"></p>
+<p>网络图也可以展现层次结构，但可能更常见于展示更广泛意义上的网络结构。它的可视化元素有边和节点。所以通常可以使用节点的直径来表示指标（颜色也可以但不常见）。边更多的表示节点间关系，而不是指标的值。</p>
+<p>网络图有一个问题是 title 的展示。如果不展示 title 的时候，更多的是分析宏观性。但展示 title 的时候呢，有可能是针对某个节点的具体分析了。这时，在布局的时候就要考虑尽量减少 title 文字重叠的情况。一是控制 title 的文字长度。另一是调整节点间的最小距离(限于使用 force-directed 布局算法)</p>
+<h2 id="cheatsheet"><a href="#cheatsheet" class="headerlink" title="cheatsheet"></a>cheatsheet</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>sunburst</th>
+<th>treemap</th>
+<th>cascaded treemap</th>
+<th>tree</th>
+<th>network</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>层级少数据少</td>
+<td>最适合</td>
+<td></td>
+<td></td>
+<td></td>
+<td>适合</td>
+</tr>
+<tr>
+<td>层级多数据多</td>
+<td></td>
+<td>最适合</td>
+<td>最适合</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>直观显示层级结构</td>
+<td>适合</td>
+<td></td>
+<td>适合</td>
+<td>最适合</td>
+<td>适合</td>
+</tr>
+<tr>
+<td>空间占用比</td>
+<td></td>
+<td>最适合</td>
+<td>适合</td>
+<td>适合</td>
+<td></td>
+</tr>
+</tbody></table>
+</div></article></div></main><footer><div class="paginator"><a href="/2020/03/19/time-series-chart/" class="next">NEXT</a></div><div class="copyright"><p>© 2019 - 2020 <a href="http://yoursite.com">Johnny Happy</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
