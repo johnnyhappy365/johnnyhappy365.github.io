@@ -6,7 +6,7 @@ tags:
   - 数据可视化
 ---
 
-[上文](write-a-bar-chart-using-d3js.md)介绍了如何用 D3js 写一个 bar chart。本文继承上文的知识点，并加以补充描述如何画一个基于时间序列为 Line Chart。
+{% post_link write-a-bar-chart-using-d3js '上文'%}介绍了如何用 D3js 写一个 bar chart。本文继承上文的知识点，并加以补充描述如何画一个基于时间序列为 Line Chart。
 {% raw %}
 <video src="/videos/linechart_demo.mov" autoplay loop="loop">
 </video>
